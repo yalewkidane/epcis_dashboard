@@ -1,0 +1,9 @@
+.content-container {
+    display: flex;
+    flex-direction: row; /* Ensures horizontal alignment */
+    align-items: flex-start; /* Aligns items to the top, change as needed */
+}
+
+.content-container > div, .content-container > GraphVisualizer {
+    margin: 10px; /* Adds spacing between elements, optional */
+}

@@ -1,0 +1,70 @@
+
+
+.digital-product-passport {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-list {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.scrollable-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fancy-list-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.fancy-list-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.fancy-list-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+    background: #0056b3;
+}
+
+/*.button-container {
+    display: flex;
+    gap: 300px;  Adjust the spacing as needed 
+}*/

@@ -1,0 +1,18 @@
+.under-construction {
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #ffcc00;
+    border-left-width: 5px;
+    border-left-color: #ffcc00;
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: bold;
+  }
+
+.documentation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }

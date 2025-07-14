@@ -1,0 +1,11 @@
+module.exports={
+    apps:[{
+        name:'epcis-web',
+        script:'npm',
+        args:'start',
+        env:{
+            PORT:7090
+        }
+    }
+    ]
+};

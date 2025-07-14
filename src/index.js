@@ -1,15 +1,25 @@
+import { CssBaseline } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { Provider } from 'react-redux';
 import App from './App';
+import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
+import { GlobalStateProvider } from './GlobalStateContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <GlobalStateProvider>
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <CssBaseline />
+      <App />
+    </Provider>
   </React.StrictMode>
+  </GlobalStateProvider>,
+  document.getElementById('root')
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
