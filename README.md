@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Traceability Knowledge Graph Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web front end for the EPCIS 2.0 traceability knowledge graph. It talks to two kinds of
+services, both configured in the browser under **Settings**:
 
-## Available Scripts
+- one or more **EPCIS 2.0 repositories** (`http://host:7080/epcis/v2`), the distributed
+  partner systems where visibility events are captured;
+- the **traceability knowledge-graph service** (`http://host:7087`), which subscribes to
+  those repositories and answers lineage questions with a single graph query.
 
-In the project directory, you can run:
+## Pages
 
-### `npm start`
+| Section | Page | What it does |
+|---|---|---|
+| Overview | Home | Architecture summary, graph and repository status, loaded demo scenarios |
+| Traceability graph | Explorer | Enter any GS1 identifier; see its lineage as an interactive graph plus summary, timeline, event table and packing hierarchy. Forward / backward / both directions, depth control, shareable URL (`/traceability?id=…`) |
+| | Scenario runner | Replay the clothing or canned-tuna story step by step through the EPCIS repositories (or straight into the graph) and watch the graph grow |
+| | Live feed | Events arriving in the graph through its subscriptions, with source channels |
+| EPCIS repository | Overview, Events, Vocabularies | Status and vocabulary counts, parameterised event browsing with paging, vocabulary lists with linked events |
+| API console | Capture, Query, Subscriptions | Send documents/events (with validation), build parameterised and named queries, manage MQTT / websocket / webhook channels |
+| System | Settings, Documentation, Installation, Changelog | Repository list and graph-service URL with connection tests; model and API reference |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Running
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+npm install
+npm start            # http://localhost:3000 (PORT in .env)
+npm run build        # production build in ./build
+npx serve -s build   # serve it
+```
 
-### `npm test`
+Or with Docker: `docker build -t traceability-dashboard . && docker run -p 3000:3000 traceability-dashboard`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The default settings expect an EPCIS repository on `http://localhost:7080/epcis/v2` and the
+graph service on `http://localhost:7087`. Both services must allow CORS (they do).
 
-### `npm run build`
+## Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+  api/            fetch wrapper and typed clients for EPCIS and the graph service
+  config/         settings context (localStorage) with the repository list
+  components/     layout shell, shared widgets, force-graph renderer, trace panels
+  pages/          one folder per sidebar section
+  theme.js        MUI theme and the role colours used by the graph
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built with Create React App, MUI 5 and react-force-graph-2d.

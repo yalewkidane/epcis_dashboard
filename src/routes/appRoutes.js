@@ -1,217 +1,74 @@
-import APIPageLayout from "../pages/api/APIPageLayout";
-import HomePage from "../pages/home/HomePage";
-//import { RouteType } from "./config";
-import DefaultPage from "../pages/api/DefaultPage";
-import QueryPage from "../pages/api/QueryPage";
-import ChangelogPage from "../pages/changelog/ChangelogPage";
-import SettingPage from "../pages/setting/SettingPage";
-//import CapturePage from "../pages/api/capturePage";
-import CapturePageLayout from "../pages/api/capture/CapturePageLayout";
-import CaptureJsonPage from "../pages/api/capture/captureJson";
-import CaptureManualPage from "../pages/api/capture/captureManual";
-import SubscriptionPage from "../pages/api/SubscriptionPage";
-import HomeIcon from '@mui/icons-material/Home';
-import DashboardPageLayout from "../pages/dashboard/DashboardPageLayout";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import HubOutlinedIcon from '@mui/icons-material/HubOutlined';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import SensorsIcon from '@mui/icons-material/Sensors';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-//import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
+import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
+import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import GeneralPage from "../pages/dashboard/GeneralPage";
-import EventPage from "../pages/dashboard/EventPage";
-import VocabularyPage from "../pages/dashboard/VocabularyPage";
-import InstallationPage from "../pages/installation/InstallationPage";
-import DocumentationPage from "../pages/documentation/DocumentationPage";
-import TraceabilityPage from "../pages/traceability/TraceabilityPage";
-import TimelineIcon from '@mui/icons-material/Timeline';
-import ApiIcon from '@mui/icons-material/Api';
-import TimeLineComponent from "../pages/traceability/TimeLineComponent";
-import GraphComponent from "../pages/traceability/GraphComponent";
-import TraceabilityPageLayout from "../pages/traceability/TraceabilityPageLayout";
+import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 
-const appRoutes = [
-  {
-    path: "/home",
-    element: <HomePage />,
-    state: "home",
-    sidebarProps: {
-      displayText: "Home",
-      icon: <HomeIcon />
-    }
-  },
-  
-  {
-    path: "/api",
-    element: <APIPageLayout />,
-    state: "api",
-    sidebarProps: {
-      displayText: "API",
-      icon: <ApiIcon />
-    },
-    child: [
-      {
-        index: true,
-        element: <DefaultPage />,
-        state: "dashboard.index"
-      },
-      {
-        path: "/api/capture",
-        element: <CapturePageLayout />,
-        state: "dashboard.capture",
-        sidebarProps: {
-          displayText: "Capture"
-        },
-        child: [
-          {
-            path: "/api/capture/captureJson",
-            element: <CaptureJsonPage />,
-            state: "dashboard.general",
-            sidebarProps: {
-              displayText: "Capture JSON"
-            },
-          },
-          {
-            path: "/api/capture/captureManual",
-            element: <CaptureManualPage />,
-            state: "dashboard.general",
-            sidebarProps: {
-              displayText: "Capture Manual"
-            },
-          }
-        
-        ]
-      },
-      {
-        path: "/api/query",
-        element: <QueryPage />,
-        state: "dashboard.query",
-        sidebarProps: {
-          displayText: "Query"
-        }
-      },
-      {
-        path: "/api/saas",
-        element: <SubscriptionPage />,
-        state: "dashboard.subscription",
-        sidebarProps: {
-          displayText: "Subscription"
-        }
-      }
-    ]
-  },
-  
-  {
-    path: "/dashboard",
-    element: <DashboardPageLayout />,
-    state: "dashboard",
-    sidebarProps: {
-      displayText: "Dashboard",
-      icon: <DashboardOutlinedIcon />
-    },
-    child: [
-      {
-        path: "/dashboard/general",
-        element: <GeneralPage />,
-        state: "dashboard.general",
-        sidebarProps: {
-          displayText: "General"
-        },
-      },
-      {
-        path: "/dashboard/event",
-        element: <EventPage />,
-        state: "dashboard.event",
-        sidebarProps: {
-          displayText: "Event"
-        }
-      },
-      {
-        path: "/dashboard/vocabulary",
-        element: <VocabularyPage />,
-        state: "dashboard.vocabulary",
-        sidebarProps: {
-          displayText: "Vocabulary"
-        }
-      }
-    ]
-  },
+import HomePage from '../pages/home/HomePage';
+import ExplorerPage from '../pages/traceability/ExplorerPage';
+import ScenarioRunnerPage from '../pages/traceability/ScenarioRunnerPage';
+import LiveFeedPage from '../pages/traceability/LiveFeedPage';
+import RepositoryOverviewPage from '../pages/epcis/RepositoryOverviewPage';
+import EventsPage from '../pages/epcis/EventsPage';
+import VocabulariesPage from '../pages/epcis/VocabulariesPage';
+import CapturePage from '../pages/console/CapturePage';
+import QueryPage from '../pages/console/QueryPage';
+import SubscriptionsPage from '../pages/console/SubscriptionsPage';
+import SettingsPage from '../pages/system/SettingsPage';
+import DocumentationPage from '../pages/system/DocumentationPage';
+import InstallationPage from '../pages/system/InstallationPage';
+import ChangelogPage from '../pages/system/ChangelogPage';
 
+/** Navigation groups rendered by the sidebar; `path` doubles as the route. */
+const navigation = [
   {
-    path: "/traceability",
-    element: <TraceabilityPageLayout />,
-    state: "traceability",
-    sidebarProps: {
-      displayText: "Traceability",
-      icon: <TimelineIcon />
-    },
-    child: [
-      {
-          path: "/traceability",
-          element: <TraceabilityPage />,
-          state: "traceability",
-          sidebarProps: {
-            displayText: "Traceability-Home",
-          }
-      },
-      {
-        path: "/traceability/timeLine",
-        element: <TimeLineComponent />,
-        state: "traceability.timeLine",
-        sidebarProps: {
-          displayText: "Time Line"
-        },
-      },
-      {
-        path: "/traceability/graph",
-        element: <GraphComponent />,
-        state: "traceability.graph",
-        sidebarProps: {
-          displayText: "Graph"
-        }
-      }
-    ]
+    title: 'Overview',
+    items: [{ path: '/', label: 'Home', icon: <HomeOutlinedIcon />, element: <HomePage /> }],
   },
-
   {
-    path: "/documentation",
-    element: <DocumentationPage />,
-    state: "documentation",
-    sidebarProps: {
-      displayText: "Documentation",
-      icon: <ArticleOutlinedIcon />
-    }
+    title: 'Traceability graph',
+    items: [
+      { path: '/traceability', label: 'Explorer', icon: <HubOutlinedIcon />, element: <ExplorerPage /> },
+      { path: '/traceability/scenarios', label: 'Scenario runner', icon: <PlayCircleOutlineIcon />, element: <ScenarioRunnerPage /> },
+      { path: '/traceability/live', label: 'Live feed', icon: <SensorsIcon />, element: <LiveFeedPage /> },
+    ],
   },
-
   {
-    path: "/installation",
-    element: <InstallationPage />,
-    state: "installation",
-    sidebarProps: {
-      displayText: "Installation",
-      icon: <FileDownloadOutlinedIcon />
-    }
+    title: 'EPCIS repository',
+    items: [
+      { path: '/epcis', label: 'Overview', icon: <DashboardOutlinedIcon />, element: <RepositoryOverviewPage /> },
+      { path: '/epcis/events', label: 'Events', icon: <EventNoteOutlinedIcon />, element: <EventsPage /> },
+      { path: '/epcis/vocabularies', label: 'Vocabularies', icon: <MenuBookOutlinedIcon />, element: <VocabulariesPage /> },
+    ],
   },
-
   {
-    path: "/settings",
-    element: <SettingPage />,
-    state: "changelog",
-    sidebarProps: {
-      displayText: "Settings",
-      icon: <SettingsIcon />
-    }
+    title: 'API console',
+    items: [
+      { path: '/console/capture', label: 'Capture', icon: <UploadFileOutlinedIcon />, element: <CapturePage /> },
+      { path: '/console/query', label: 'Query', icon: <ManageSearchOutlinedIcon />, element: <QueryPage /> },
+      { path: '/console/subscriptions', label: 'Subscriptions', icon: <NotificationsActiveOutlinedIcon />, element: <SubscriptionsPage /> },
+    ],
   },
-
   {
-    path: "/changelog",
-    element: <ChangelogPage />,
-    state: "changelog",
-    sidebarProps: {
-      displayText: "Changelog",
-      icon: <FormatListBulletedOutlinedIcon />
-    }
-  }
+    title: 'System',
+    items: [
+      { path: '/settings', label: 'Settings', icon: <SettingsOutlinedIcon />, element: <SettingsPage /> },
+      { path: '/docs', label: 'Documentation', icon: <ArticleOutlinedIcon />, element: <DocumentationPage /> },
+      { path: '/install', label: 'Installation', icon: <DownloadOutlinedIcon />, element: <InstallationPage /> },
+      { path: '/changelog', label: 'Changelog', icon: <HistoryOutlinedIcon />, element: <ChangelogPage /> },
+    ],
+  },
 ];
 
-export default appRoutes;
+export const allRoutes = navigation.flatMap((g) => g.items);
+
+export default navigation;

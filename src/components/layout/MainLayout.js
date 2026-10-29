@@ -1,44 +1,20 @@
-import { Outlet } from "react-router-dom";
-import { Box, Toolbar } from "@mui/material";
-import colorConfigs from "../../configs/colorConfigs";
-import sizeConfigs from "../../configs/sizeConfigs";
-import Sidebar from "../common/Sidebar";
-import Topbar from "../common/Topbar";
-import BottomBar from "../common/BottomBar";
+import { Box, Toolbar } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Topbar from './Topbar';
+import { layout } from '../../theme';
 
-const bottomBarHeight = 160; // Adjust the height as needed
-
-const MainLayout = () => {
+export default function MainLayout() {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Topbar />
-      <Box
-        component="nav"
-        sx={{
-          width: sizeConfigs.sidebar.width,
-          flexShrink: 0
-        }}
-      >
-        <Sidebar />
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <Sidebar />
+      <Box component="main" sx={{ flexGrow: 1, minWidth: 0, ml: `${layout.sidebarWidth}px` }}>
+        <Topbar />
+        <Toolbar sx={{ minHeight: `${layout.topbarHeight}px !important` }} />
+        <Box sx={{ p: { xs: 2, md: 3 }, maxWidth: 1600, mx: 'auto' }}>
+          <Outlet />
+        </Box>
       </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: `calc(100% - ${sizeConfigs.sidebar.width})`,
-          minHeight: "100vh",
-          backgroundColor: colorConfigs.mainBg,
-          paddingBottom: `${bottomBarHeight}px` // Add padding to the bottom
-        }}
-      >
-        <Toolbar />
-        <Outlet />
-      </Box>
-      {/* <BottomBar /> {/* Add the BottomBar component */}  
-      <BottomBar sx={{ height: `${bottomBarHeight}px` }} /> {/* Add the BottomBar component */}
     </Box>
   );
-};
-
-export default MainLayout;
+}

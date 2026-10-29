@@ -1,27 +1,21 @@
-import { CssBaseline } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import App from './App';
-import { store } from './redux/store';
+import theme from './theme';
+import { SettingsProvider } from './config/settings';
 import reportWebVitals from './reportWebVitals';
-import { GlobalStateProvider } from './GlobalStateContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GlobalStateProvider>
   <React.StrictMode>
-    <Provider store={store}>
-      <CssBaseline />
-      <App />
-    </Provider>
+    <SettingsProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </SettingsProvider>
   </React.StrictMode>
-  </GlobalStateProvider>,
-  document.getElementById('root')
 );
 
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
